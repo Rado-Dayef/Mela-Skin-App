@@ -91,6 +91,7 @@ class AppStrings {
 
   /// Base URLs
   static const String imagesBase = "assets/images";
+  static const String aiModel = "assets/model.tflite";
 
   /// Assets
   static const String doctorDarkIcon = "$imagesBase/doctorDarkIcon.png";
@@ -136,4 +137,8 @@ class AppStrings {
   static const String youHaveAlreadyAcceptedThisCaseText = "You have already accepted this case, Do you want to cancel it?";
   static const String youHaveAlreadyCanceledThisCaseText = "You have already canceled this case, Do you want to accept it?";
   static const String youHaveAlreadySentYourDetailsText = "You have already shared your case with this doctor, Do you want to cancel it?";
+
+  /// Ai Classes
+  static const String melanomaText = "Melanoma";
+  static const String benignText = "Benign";
 }

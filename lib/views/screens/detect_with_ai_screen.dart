@@ -69,7 +69,22 @@ class DetectWithAiScreen extends GetWidget<DetectWithAiController> {
                       );
                     },
                   ),
-                ),
+                ),               
+                GetBuilder<DetectWithAiController>(
+                      builder: (_) {
+                        return controller.detectionResult == null
+                            ? 25.whiteLoading
+                            : Column(children: [
+                              25.gap,
+                               Text(
+                                '${controller.detectionResult!.label} (${controller.detectionResult!.confidence.toStringAsFixed(2)}%)',
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                      color: AppColors.darkBlueColor,
+                                    ),
+                               ),
+                            ],);
+                      },
+                    ),
                 25.gap,
                 InkWell(
                   onTap: controller.detect,
