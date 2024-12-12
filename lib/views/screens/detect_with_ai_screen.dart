@@ -44,8 +44,8 @@ class DetectWithAiScreen extends GetWidget<DetectWithAiController> {
                   child: GetBuilder<DetectWithAiController>(
                     builder: (_) {
                       return Container(
-                        width: 200,
-                        height: 200,
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        height: MediaQuery.of(context).size.width * 0.7,
                         decoration: BoxDecoration(
                           color: AppColors.darkBlueColor,
                           borderRadius: 15.borderRadiusAll,
@@ -57,7 +57,7 @@ class DetectWithAiScreen extends GetWidget<DetectWithAiController> {
                                 child: SizedBox(
                                   height: double.infinity,
                                   width: double.infinity,
-                                  child: Image.file(controller.image!, fit: BoxFit.cover),
+                                  child: Image.memory(controller.image!, fit: BoxFit.cover),
                                 ),
                               )
                             : Text(

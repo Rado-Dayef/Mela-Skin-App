@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:image/image.dart' as img;
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,7 +10,7 @@ import 'package:tflite_flutter/tflite_flutter.dart';
 import 'dart:developer' as developer;
 
 class DetectWithAiController extends GetxController {
-  File? image;
+  Uint8List? image;
   DetectionResultModel? detectionResult;
   bool isLoading = false;
   Interpreter? _interpreter;
@@ -45,7 +46,7 @@ class DetectWithAiController extends GetxController {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      image = File(pickedFile.path);
+      image = File(pickedFile.path).readAsBytesSync();
       detectionResult = null;
       update();
     }
@@ -57,7 +58,7 @@ class DetectWithAiController extends GetxController {
     if (image != null) {
       isLoading = true;
       update();
-      await predictImage(image!);
+      await predictImage();
       isLoading = false;
       update();
     } else {
@@ -67,13 +68,16 @@ class DetectWithAiController extends GetxController {
     }
   }
 
-  Future<void> predictImage(File imageFile) async {
+  Future<void> predictImage() async {
     try {
       if (_interpreter == null) {
         throw Exception('Model not loaded');
       }
+      if (image == null) {
+        throw Exception('Image not loaded');
+      }
 
-      img.Image? originalImage = img.decodeImage(await imageFile.readAsBytes());
+      img.Image? originalImage = img.decodeImage(image!);
 
       img.Image resizedImage =
           img.copyResize(originalImage!, width: 224, height: 224);
