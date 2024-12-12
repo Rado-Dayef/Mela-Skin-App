@@ -90,12 +90,9 @@ class AppStrings {
   static const String openingSquareBracketSign = "[";
 
   /// Base URLs
-  static const String aiBase = "assets/ai";
   static const String imagesBase = "assets/images";
 
   /// Assets
-  static const String aiLabelsAsset = "$aiBase/labels.txt";
-  static const String aiModelAsset = "$aiBase/aiModel.tflite";
   static const String doctorDarkIcon = "$imagesBase/doctorDarkIcon.png";
   static const String patientDarkIcon = "$imagesBase/patientDarkIcon.png";
   static const String doctorLightIcon = "$imagesBase/doctorLightIcon.png";
